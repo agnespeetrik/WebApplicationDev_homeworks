@@ -1,8 +1,10 @@
 $(function() {
 
+    //Read and display data from endpoint
     $.get('https://private-anon-613824dd4f-wad20postit.apiary-mock.com/posts', function(response) {
-        console.log(response);
-        for (post of response) {
+        
+        for (post of response) { //We go through every post and display its data
+            //I created different divs and everything based on given html file.
             let div1 = $('<div class="post">');
 
             let div2 = $('<div class="post-author">');
@@ -48,7 +50,13 @@ $(function() {
 
             $(".main-container").append(div1);
         }
-        
-    })
 
+        
+        //Like button interactive - changes color, when liked
+        $(".like-button").click(function(){
+            $(this).toggleClass('liked')   
+        });
+    });
+    
 });
+
