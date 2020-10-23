@@ -113,6 +113,34 @@ nav div.avatar-container {
     text-align: right;
 }
 
+nav .avatar:hover{
+    cursor: pointer;
+}
+
+.dropdown-container {
+    display: none;
+    position: absolute;
+    top: 40px;
+    right: 0;
+}
+
+.dropdown-container .dropdown {
+    position: relative;
+    background-color: white;
+    width: 250px;
+    height: auto;
+    padding-top: 20px;
+}
+
+.dropdown-container .dropdown .userinfo {
+    padding: 5px 0px 10px 10px;
+}
+
+.dropdown-container .dropdown .link1, .link2 {
+    border-top: 1px solid lightgray;
+    padding: 10px 0px 10px 10px;
+}
+
 .main-container {
     width: 50%;
     min-height: 100%;
