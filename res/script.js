@@ -2,6 +2,8 @@ $(function() {
 
     // dropdown menu from user profile icon
     $.get('https://private-anon-1d194d3fbb-wad20postit.apiary-mock.com/users/1', function(response) {
+            $(".avatar").attr("src",response.avatar);
+
             let div6 = $('<div class="dropdown">');
             let div7 = $('<div class="userinfo">');
 
@@ -101,7 +103,12 @@ $(function() {
         }
 
         $(".subscribe-button").click(function () {
-            $(this).toggleClass('subscribed')
+            $(this).toggleClass('subscribed');
+            if($(this).hasClass('subscribed')){
+                $(this).text('Followed');         
+            } else {
+                $(this).text('Follow');
+            }
         })
     });
 });
