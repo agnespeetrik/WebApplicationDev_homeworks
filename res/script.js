@@ -80,4 +80,28 @@ $(function() {
             $(this).toggleClass('liked')   
         });
     });
+
+    //Read and display the profiles information.
+    $.get('https://private-anon-2538919886-wad20postit.apiary-mock.com/profiles', function (response) {
+        for (profile of response) {
+            let div8 = $('<div class="user-profile">');
+            let div9 = $('<div class="subscribe-button">');
+
+            let name = $('<name>').text(profile.firstname + " " + profile.lastname);
+            let avatar = $('<img>').attr('src', profile.avatar);
+            let button = $('<subscribe-button>').text("Follow");
+
+            div8.append(avatar);
+            div8.append(name);
+
+            div9.append(button);
+            div8.append(div9);
+
+            $(".profiles-container").append(div8);
+        }
+
+        $(".subscribe-button").click(function () {
+            $(this).toggleClass('subscribed')
+        })
+    });
 });
