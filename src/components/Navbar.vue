@@ -10,7 +10,7 @@
           <button type="button">Search</button>
         </div>
         <div class="avatar-container" @click="toggleDropDown">
-          <img src="../assets/avatar.png" alt="postIt">
+          <img v-bind:src="this.list.avatar" alt="avatar">
         </div>
         <div class="dropdown-container">
           <div class="dropdown">
