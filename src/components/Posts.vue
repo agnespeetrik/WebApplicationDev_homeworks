@@ -4,18 +4,18 @@
     <section class="main-container"  v-for="post in list" v-bind:key="post.id">
       <div class="post">
         <div class="post-author">
-          <span class="post-author-info">{{item.author.info}}
-            <img v-bind:src="item.author.avatar">
-          <span class="post-author">{{item.author.firstname + " " + item.author.lastname}}
+          <span class="post-author-info">{{post.author.info}}
+            <img v-bind:src="post.author.avatar">
+          <span class="post-author">{{post.author.firstname + " " + post.author.lastname}}
           </span>
             </span>
-          <small>{{item.createTime}}</small>
+          <small>{{post.createTime}}</small>
         </div>
       <div class="post-title">
-        <h3>{{item.text | capitalize}}</h3>
+        <h3>{{post.text | capitalize}}</h3>
       </div>
         <div class="post-actions">
-        <button type="button" class="like-button">{{item.likes}}</button>
+        <button type="button" class="like-button">{{post.likes}}</button>
         </div>
       </div>
     </section>
@@ -24,7 +24,7 @@
 
 <script>
 import Navbar from "@/components/Navbar";
-import Vue from 'vue';
+import axios from 'axios'
 
 export default {
   name: 'Posts',
@@ -33,14 +33,14 @@ export default {
   },
   data(){
     return {
-      list:undefined
+      list:this.list
     }
   },
   mounted() {
-    Vue.axios.get('https://private-517bb-wad20postit.apiary-mock.com/posts')
+    axios.get('https://private-517bb-wad20postit.apiary-mock.com/posts')
     .then((resp) => {
       this.list=resp.data;
-        console.warn(resp.data)
+      console.log(resp.data)
     })
   },
   filters: {
