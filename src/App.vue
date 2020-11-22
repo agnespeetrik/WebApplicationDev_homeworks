@@ -1,3 +1,4 @@
+
 <template>
   <div id="login">
     <meta charset="utf-8">
@@ -5,6 +6,7 @@
     <link rel="stylesheet" href="res/css/style.css">
     <img alt="logo" src="assets/logo.png">
     <HelloWorld msg="Welcome to postIt! Please log in!"/>
+    <login />
   </div>
 </template>
 
