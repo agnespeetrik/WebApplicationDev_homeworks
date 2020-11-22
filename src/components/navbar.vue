@@ -46,7 +46,7 @@ export default {
           }, 200)
         },
         redirectToLogOut() {
-          this.$router.push({name: 'Login'})
+          this.$router.push({name: 'login'})
         },
         browsePage() {
           this.isLoggingIn = true
@@ -56,7 +56,7 @@ export default {
           }, 200)
         },
         redirectToBrowsePage() {
-          this.$router.push({name: 'Browse'})
+          this.$router.push({name: 'browse'})
         }
   }
 }
