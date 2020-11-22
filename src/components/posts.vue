@@ -1,33 +1,133 @@
 <template>
-  <div>
-    <section class="main-container" v-bind:key="post.id" v-for="post in posts">
-      <Post v-bind:post="post" />
+  <div class="posts">
+    <section class="main-container"  v-for="post in list" v-bind:key="post.id">
+      <div class="post">
+        <div class="post-author">
+          <span class="post-author-info">{{item.author.info}}
+            <img v-bind:src="item.author.avatar">
+          <span class="post-author">{{item.author.firstname + " " + item.author.lastname}}
+          </span>
+            </span>
+          <small>{{item.createTime}}</small>
+        </div>
+      <div class="post-title">
+        <h3>{{item.text | capitalize}}</h3>
+      </div>
+        <div class="post-actions">
+        <button type="button" class="like-button">{{item.likes}}</button>
+        </div>
+      </div>
     </section>
   </div>
 </template>
 
 <script>
-import Post from './Post';
-import axios from 'axios';
+import Navbar from "@/components/Navbar";
 
 export default {
   name: 'Posts',
   components: {
-    Post
+    Navbar
   },
   data(){
     return {
-      posts: []
+      {list:undefined}
     }
   },
-  created(){
-    axios.get('https://private-517bb-wad20postit.apiary-mock.com/posts')
-      .then(res => this.posts = res.data)
-      .catch(err => console.log(err));
+  mounted() {
+    Vue.axios.get('https://private-517bb-wad20postit.apiary-mock.com/posts')
+    .then((resp) => {
+      this.list=resp.data;
+        console.warn(resp.data)
+    })
+  },
+  filters: {
+    capitalize: function (value) {
+      if (!value) return ''
+      value = value.toString()
+      return value.toUpperCase()
+    }
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.main-container {
+  width: 50%;
+  min-height: 100%;
+  margin: auto auto;
+  padding: 10px 5px 5px 5px;
+  background-color: #ffffff;
+}
+.post {
+  width: 80%;
+  margin: 15px auto;
+  box-shadow: 0 0 15px rgba(38, 50, 56, 0.33);
+  border-radius: 5px;
+}
+.post .post-author {
+  padding: 10px;
+}
+.post .post-author::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.post .post-author .post-author-info {
+  float: left;
+  position: relative;
+  width: 50%;
+}
+.post .post-author .post-author-info img {
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  object-fit: cover;
+  object-position: top;
+  margin: -8px;
+}
+.post .post-author .post-author-info small {
+  position: absolute;
+  top: 10px;
+  left: 35px;
+}
+.post .post-author .post-author-info + small {
+  float: right;
+  color: grey;
+  padding: 10px;
+}
+.post .post-image img, video {
+  width: 100%;
+  min-height: 150px;
+  max-height: 350px;
+  object-fit: cover;
+  object-position: top center;
+}
+.post .post-title {
+  padding: 10px;
+}
+.post .post-title h3 {
+  display: inline;
+}
+.post .post-title ~ .post-actions {
+  padding: 10px;
+}
+.like-button {
+  background-image: url(../assets/like.png);
+  background-size: 15px;
+  background-repeat: no-repeat;
+  background-position: 5px center;
+  background-color: #8a8a8a;
+  width: 60px;
+  height: 25px;
+  padding-left: 23px;
+  line-height: 10px;
+  text-align: left;
+  border: none;
+}
+.like-button.liked {
+  background-color: #01579b;
+}
+
 </style>

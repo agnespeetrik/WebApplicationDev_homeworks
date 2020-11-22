@@ -5,7 +5,8 @@
       <img src="../assets/logo.png" alt="postIt">
     </div>
     <div class="search-container">
-      <input type="text" name="search"><button type="button">Search</button>
+      <input type="text" name="search">
+      <button type="button">Search</button>
     </div>
     <div class="avatar-container">
       <img class="avatar">
@@ -14,11 +15,11 @@
         <span id="user-email"></span>
         <span class="separator"></span>
         <span>
-          <a href="browse.html">Browse</a>
+          <button class="button" @click="browsePage" v-if="!isLoggingIn" >Browse</button>
         </span>
         <span class="separator"></span>
         <span>
-          <a href="login.html">Log Out</a>
+          <button class="button" @click="logOut" v-if="!isLoggingIn">Log Out</button>
         </span>
       </div>
     </div>
@@ -28,8 +29,39 @@
 
 <script>
 export default {
-  name: 'navbar'
+  name: 'navbar',
+
+  data() {
+    return {
+      isLoggingIn: false,
+      showMore: false
+    }
+  },
+  methods: {
+    logOut() {
+          this.isLoggingIn = true
+          setTimeout(() => {
+            this.isLoggingIn = false
+            setTimeout(() => this.redirectToLogOut(), 200)
+          }, 200)
+        },
+        redirectToLogOut() {
+          this.$router.push({name: 'login'})
+        },
+        browsePage() {
+          this.isLoggingIn = true
+          setTimeout(() => {
+            this.isLoggingIn = false
+            setTimeout(() => this.redirectToBrowsePage(), 200)
+          }, 200)
+        },
+        redirectToBrowsePage() {
+          this.$router.push({name: 'browse'})
+        }
+  }
 }
+
+
 </script>
 
 <style scoped>
@@ -80,22 +112,16 @@ nav div.avatar-container {
     margin-right: 15px;
     text-align: right;
 }
-.drop-down-container {
-    position: absolute;
-    min-width: 150px;
-    height: auto;
-    background-color: #ffffff;
-    padding: 10px;
-    right: 0;
-    top: 50px;
-    text-align: left;
-    display: none;
+button {
+  padding: 8px 16px;
+  margin: 4px 0;
+  color: #ffffff;
+  background-color: #01579b;
+  border: none;
+  border-radius: 4px;
 }
-.drop-down-container span{
-    display: block;
-}
-.drop-down-container span.separator{
-    border-bottom: 1px solid #d7d7d7;
-    margin: 10px -10px;
+button:hover {
+  box-shadow: 0 0 5px rgba(38, 50, 56, 0.7);
+  cursor: pointer;
 }
 </style>
