@@ -4,8 +4,8 @@
     <section class="main-container" v-for="item in list" v-bind:key="item.id">
       <div class="profile">
         <img v-bind:src="item.avatar">
-        <h2>{{item.firstname + item.lastname}}</h2>
-        <button class="follow-button">Follow</button>
+        <h2>{{ item.firstname + item.lastname }}</h2>
+        <button class=follow-button @click="follow" v-if="!follow">Follow</button>
       </div>
     </section>
   </div>
@@ -16,17 +16,20 @@ import Navbar from '@/components/Navbar';
 import axios from 'axios';
 
 export default {
-name: "browse",
-components: {
+  name: "browse",
+  methods: {
+
+  },
+  components: {
     Navbar
   },
-  data () {
-    return {list:this.list}
+  data() {
+    return {list: this.list}
   },
   mounted() {
     axios.get('https://private-517bb-wad20postit.apiary-mock.com/profiles')
         .then((resp) => {
-          this.list=resp.data;
+          this.list = resp.data;
         })
   }
 }
@@ -34,24 +37,24 @@ components: {
 
 <style scoped>
 * {
-    font-family: 'Roboto Slab', serif;
-    outline: none;
+  font-family: 'Roboto Slab', serif;
+  outline: none;
 }
 
 html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
 }
 
 body {
-    background-color: #0277bd;
-    color: #263238;
+  background-color: #0277bd;
+  color: #263238;
 }
 
 a {
-    color: #40c4ff;
+  color: #40c4ff;
 }
 
 
@@ -62,6 +65,7 @@ a {
   padding: 90px 15px 15px 15px;
   background-color: #ffffff;
 }
+
 .profile {
   width: 40%;
   display: inline-block;
@@ -70,7 +74,8 @@ a {
   text-align: center;
   margin: 1%;
 }
-.profile img{
+
+.profile img {
   width: 75px;
   height: 75px;
   border-radius: 100%;
@@ -78,13 +83,16 @@ a {
   object-position: top;
   margin: 5px;
 }
-.profile h2{
+
+.profile h2 {
   font-size: 16px;
 }
-.follow-button{
+
+.follow-button {
   background-color: #82008f;
 }
-.follow-button.followed{
+
+.follow-button.followed {
   background-color: #ffffff;
   border: 1px solid #82008f;
   color: #82008f;
