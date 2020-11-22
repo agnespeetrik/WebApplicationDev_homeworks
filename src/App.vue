@@ -4,20 +4,9 @@
     <meta charset="utf-8">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="res/css/style.css">
-    <Login />
+    <router-view/>
   </div>
 </template>
-
-<script>
-import Login from './components/Login.vue';
-
-export default {
-  name: 'App',
-  components: {
-    Login
-  }
-}
-</script>
 
 <style>
 #app {

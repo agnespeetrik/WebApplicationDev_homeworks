@@ -1,5 +1,6 @@
 <template>
   <div class="posts">
+    <Navbar />
     <section class="main-container"  v-for="post in list" v-bind:key="post.id">
       <div class="post">
         <div class="post-author">
@@ -23,6 +24,7 @@
 
 <script>
 import Navbar from "@/components/Navbar";
+import Vue from 'vue';
 
 export default {
   name: 'Posts',
@@ -31,7 +33,7 @@ export default {
   },
   data(){
     return {
-      {list:undefined}
+      list:undefined
     }
   },
   mounted() {

@@ -1,19 +1,19 @@
-  <template>
+<template>
   <div class="browse">
     <Navbar></Navbar>
     <section class="main-container" v-for="item in list" v-bind:key="item.id">
-    <div class="profile">
-      <img v-bind:src="item.avatar">
-      <h2>{{item.firstname + item.lastname}}</h2>
-      <button class="follow-button">Follow</button>
-    </div>
+      <div class="profile">
+        <img v-bind:src="item.avatar">
+        <h2>{{item.firstname + item.lastname}}</h2>
+        <button class="follow-button">Follow</button>
+      </div>
     </section>
-
   </div>
 </template>
 
 <script>
-import Navbar from '@/components/Navbar'
+import Navbar from '@/components/Navbar';
+import Vue from 'vue';
 
 export default {
 name: "browse",
@@ -30,7 +30,6 @@ components: {
           console.warn(resp.data)
         })
   }
-}
 }
 </script>
 

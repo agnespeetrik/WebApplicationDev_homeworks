@@ -1,16 +1,16 @@
 <template>
-  <div class="home">
+  <div class="index">
     <Navbar></Navbar>
     <Posts></Posts>
   </div>
 </template>
 
 <script>
-import Posts from '@/components/Posts.vue'
-import Navbar from "@/components/Navbar";
+import Posts from '@/components/Posts.vue';
+import Navbar from '@/components/Navbar.vue';
 
 export default {
-name: "index",
+name: 'Index',
 components: {
     Navbar,
     Posts

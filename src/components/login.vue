@@ -22,7 +22,7 @@
             <input type="password" name="password" placeholder="Password">
           </div>
           <div>
-            <button class="button" type="submit" name="login">Log In</button>
+            <button @click="login" v-if="!isLoggingIn">Log In</button>
           </div>
           <div>
             <small>
@@ -37,8 +37,23 @@
 
 <script>
 export default {
-  name: "Login",
-  props: {
+  name: 'Login',
+  data() {
+    return {
+      isLoggingIn: false
+    }
+  },
+  methods: {
+    login() {
+      this.isLoggingIn = true
+      setTimeout(() => {
+        this.isLoggingIn = false
+        setTimeout(() => this.redirect(), 200)
+      }, 200)
+    },
+    redirect() {
+      this.$router.push({name: 'Index'})
+    }
   }
 }
 </script>

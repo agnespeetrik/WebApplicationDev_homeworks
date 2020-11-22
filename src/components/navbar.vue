@@ -1,35 +1,38 @@
 <template>
-<header>
-  <nav>
-    <div class="logo-container">
-      <img src="../assets/logo.png" alt="postIt">
-    </div>
-    <div class="search-container">
-      <input type="text" name="search">
-      <button type="button">Search</button>
-    </div>
-    <div class="avatar-container">
-      <img class="avatar">
-      <div class="drop-down-container">
-        <span id="user-name">John Doe</span>
-        <span id="user-email"></span>
-        <span class="separator"></span>
-        <span>
-          <button class="button" @click="browsePage" v-if="!isLoggingIn" >Browse</button>
-        </span>
-        <span class="separator"></span>
-        <span>
-          <button class="button" @click="logOut" v-if="!isLoggingIn">Log Out</button>
-        </span>
-      </div>
-    </div>
-  </nav>
-</header>
+  <div>
+    <header>
+      <nav>
+        <div class="logo-container">
+          <img src="../assets/logo.png" alt="postIt">
+        </div>
+        <div class="search-container">
+          <input type="text" name="search">
+          <button type="button">Search</button>
+        </div>
+        <div class="avatar-container">
+          <img class="avatar">
+          <div class="drop-down-container">
+            <span id="user-name">John Doe</span>
+            <span id="user-email"></span>
+            <span class="separator"></span>
+            <span>
+              <button class="button" @click="browsePage" v-if="!isLoggingIn" >Browse</button>
+            </span>
+            <span class="separator"></span>
+            <span>
+              <button class="button" @click="logOut" v-if="!isLoggingIn">Log Out</button>
+            </span>
+          </div>
+        </div>
+      </nav>
+    </header>
+  </div>
 </template>
 
 <script>
+
 export default {
-  name: 'navbar',
+  name: 'Navbar',
 
   data() {
     return {
@@ -37,27 +40,29 @@ export default {
       showMore: false
     }
   },
+
   methods: {
     logOut() {
-          this.isLoggingIn = true
-          setTimeout(() => {
-            this.isLoggingIn = false
-            setTimeout(() => this.redirectToLogOut(), 200)
-          }, 200)
-        },
-        redirectToLogOut() {
-          this.$router.push({name: 'login'})
-        },
-        browsePage() {
-          this.isLoggingIn = true
-          setTimeout(() => {
-            this.isLoggingIn = false
-            setTimeout(() => this.redirectToBrowsePage(), 200)
-          }, 200)
-        },
-        redirectToBrowsePage() {
-          this.$router.push({name: 'browse'})
-        }
+      this.isLoggingIn = true
+
+      setTimeout(() => {
+        this.isLoggingIn = false
+        setTimeout(() => this.redirectToLogOut(), 200)
+      }, 200)
+    },
+    redirectToLogOut() {
+      this.$router.push({name: 'Login'})
+    },
+    browsePage() {
+      this.isLoggingIn = true
+      setTimeout(() => {
+        this.isLoggingIn = false
+        setTimeout(() => this.redirectToBrowsePage(), 200)
+      }, 200)
+    },
+    redirectToBrowsePage() {
+      this.$router.push({name: 'Browse'})
+    }
   }
 }
 
