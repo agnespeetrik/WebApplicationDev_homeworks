@@ -14,9 +14,10 @@
         </div>
         <div class="dropdown-container">
           <div class="dropdown">
-            <div class="userinfo">
-              <span id="user-name">John Doe</span>
-              <span id="user-email">johnblablabla@gmail.com</span>
+            <div class="userinfo" >
+              <span id="user-name">{{ this.list.firstname + " " + this.list.lastname}}</span>
+              <br>
+              <span id="user-email">{{ this.list.email }}</span>
             </div>
             <hr>
             <button class="link1" @click="browsePage" v-if="!isLoggingIn" >Browse</button>
@@ -30,16 +31,24 @@
 
 <script>
 
+import axios from "axios";
+
 export default {
   name: 'Navbar',
 
   data() {
     return {
       isLoggingIn: false,
-      showMore: false
+      showMore: false,
+      list: this.list
     }
   },
-
+  mounted() {
+    axios.get('https://private-anon-1d194d3fbb-wad20postit.apiary-mock.com/users/1')
+        .then((resp) => {
+          this.list = resp.data;
+        })
+  },
   methods: {
     toggleDropDown() {
       this.$el.querySelector('.dropdown-container').classList.toggle('displayed')
