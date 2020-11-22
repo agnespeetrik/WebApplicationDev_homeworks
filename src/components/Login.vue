@@ -48,8 +48,8 @@ export default {
       this.isLoggingIn = true
       setTimeout(() => {
         this.isLoggingIn = false
-        setTimeout(() => this.redirect(), 200)
-      }, 200)
+        setTimeout(() => this.redirect())
+      })
     },
     redirect() {
       this.$router.push({name: 'Index'})
