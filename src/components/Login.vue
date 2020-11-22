@@ -67,9 +67,8 @@ export default {
   justify-content: center;
   align-items: center;
 }
-
 #login-container {
-
+  background-image: url(../assets/logo.png);
   background-size: 20% auto;
   background-repeat: no-repeat;
   background-position: 15px 15px;
@@ -79,7 +78,6 @@ export default {
   box-shadow: 0 0 15px rgba(38, 50, 56, 0.33);
   text-align: center;
 }
-
 #login-container form div > input {
   padding: 8px 16px;
   margin: 4px 0;
