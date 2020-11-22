@@ -11,6 +11,12 @@
             </span>
           <small>{{post.createTime}}</small>
         </div>
+      <div v-if="post.media !== null" class="post-image">
+        <img v-if="post.media.type === 'image'" :src="post.media.url" alt="">
+        <video v-else controls>
+          <source type="video/mp4" :src="post.media.url">
+       </video>
+    </div>
       <div class="post-title">
         <h3>{{post.text | capitalize}}</h3>
       </div>
