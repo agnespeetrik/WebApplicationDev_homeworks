@@ -24,7 +24,7 @@
 
 <script>
 import Navbar from "@/components/Navbar";
-import Vue from 'vue';
+import axios from 'axios'
 
 export default {
   name: 'Posts',
@@ -33,14 +33,14 @@ export default {
   },
   data(){
     return {
-      list:undefined
+      list:this.list
     }
   },
   mounted() {
-    Vue.axios.get('https://private-517bb-wad20postit.apiary-mock.com/posts')
+    axios.get('https://private-517bb-wad20postit.apiary-mock.com/posts')
     .then((resp) => {
       this.list=resp.data;
-        console.warn(resp.data)
+      console.log(resp.data)
     })
   },
   filters: {

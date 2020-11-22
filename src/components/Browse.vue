@@ -13,7 +13,7 @@
 
 <script>
 import Navbar from '@/components/Navbar';
-import Vue from 'vue';
+import axios from 'axios';
 
 export default {
 name: "browse",
@@ -21,13 +21,12 @@ components: {
     Navbar
   },
   data () {
-    return {list:undefined}
+    return {list:this.list}
   },
   mounted() {
-    Vue.axios.get('https://private-517bb-wad20postit.apiary-mock.com/profiles')
+    axios.get('https://private-517bb-wad20postit.apiary-mock.com/profiles')
         .then((resp) => {
           this.list=resp.data;
-          console.warn(resp.data)
         })
   }
 }
