@@ -5,8 +5,8 @@
       <div class="profile">
         <img v-bind:src="item.avatar">
         <h2>{{ item.firstname + item.lastname }}</h2>
-        <button class=follow-button @click="follow" v-if="!follow">Follow</button>
-      </div>
+       <button class="follow-button" v-bind:class="{ followed: isFollowed }" @click="toggleFollow()">{{ isFollowed ? "Followed" : "Follow" }} </button>
+     </div>
     </section>
   </div>
 </template>
@@ -21,7 +21,12 @@ export default {
     Navbar
   },
   data() {
-    return {list: this.list}
+    return {list: this.list, isFollowed: false}
+  },
+  methods: {
+    toggleFollow: function () {
+      this.isFollowed = !this.isFollowed;
+    },
   },
   mounted() {
     axios.get('https://private-517bb-wad20postit.apiary-mock.com/profiles')

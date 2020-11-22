@@ -21,8 +21,8 @@
         <h3>{{post.text | capitalize}}</h3>
       </div>
         <div class="post-actions">
-        <button type="button" class="like-button">{{post.likes}}</button>
-        </div>
+        <button class="like-button" v-bind:class="{ liked: isLiked }" @click="toggleLike()">{{ post.likes}}</button>
+      </div>
       </div>
     </section>
   </div>
@@ -39,8 +39,14 @@ export default {
   },
   data(){
     return {
-      list:this.list
+      list:this.list,
+      isLiked: false,
     }
+  },
+  methods: {
+    toggleLike: function () {
+      this.isLiked = !this.isLiked;
+    },
   },
   mounted() {
     axios.get('https://private-517bb-wad20postit.apiary-mock.com/posts')
