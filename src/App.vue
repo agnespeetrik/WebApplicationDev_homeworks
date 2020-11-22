@@ -1,22 +1,20 @@
 
 <template>
-  <div id="login">
+  <div id="app">
     <meta charset="utf-8">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="res/css/style.css">
-    <img alt="logo" src="assets/logo.png">
-    <HelloWorld msg="Welcome to postIt! Please log in!"/>
-    <login />
+    <Login />
   </div>
 </template>
 
 <script>
-import login from './components/login.vue'
+import Login from './components/Login.vue';
 
 export default {
-  name: 'login',
+  name: 'App',
   components: {
-    login
+    Login
   }
 }
 </script>

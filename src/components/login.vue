@@ -37,9 +37,8 @@
 
 <script>
 export default {
-  name: "login",
+  name: "Login",
   props: {
-    msg: String
   }
 }
 </script>
