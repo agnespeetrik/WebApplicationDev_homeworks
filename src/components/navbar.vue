@@ -9,20 +9,22 @@
           <input type="text" name="search">
           <button type="button">Search</button>
         </div>
-        <div class="avatar-container">
-          <img class="avatar">
-          <div class="drop-down-container">
+        <div class="avatar-container" @click="toggleDropDown">
+          <img src="../assets/avatar.png" alt="postIt">
+        </div>
+        <div class="dropdown-container">
+          <div class="userinfo">
             <span id="user-name">John Doe</span>
-            <span id="user-email"></span>
-            <span class="separator"></span>
-            <span>
-              <button class="button" @click="browsePage" v-if="!isLoggingIn" >Browse</button>
-            </span>
-            <span class="separator"></span>
-            <span>
-              <button class="button" @click="logOut" v-if="!isLoggingIn">Log Out</button>
-            </span>
+            <span id="user-email">johnblablabla@gmail.com</span>
           </div>
+          <span class="separator"></span>
+          <span>
+            <button class="link1" @click="browsePage" v-if="!isLoggingIn" >Browse</button>
+          </span>
+          <span class="separator"></span>
+          <span>
+            <button class="link2" @click="logOut" v-if="!isLoggingIn">Log Out</button>
+          </span>
         </div>
       </nav>
     </header>
@@ -42,6 +44,9 @@ export default {
   },
 
   methods: {
+    toggleDropDown() {
+      this.$el.querySelector('.dropdown-container').classList.toggle('displayed')
+    },
     logOut() {
       this.isLoggingIn = true
 
@@ -128,5 +133,18 @@ button {
 button:hover {
   box-shadow: 0 0 5px rgba(38, 50, 56, 0.7);
   cursor: pointer;
+}
+.dropdown-container {
+  display: none;
+}
+.displayed {
+  display: block;
+}
+.dropdown-container .dropdown .userinfo {
+    padding: 5px 0px 10px 10px;
+}
+.dropdown-container .dropdown .link1, .link2 {
+    border-top: 1px solid lightgray;
+    padding: 10px 0px 10px 10px;
 }
 </style>
