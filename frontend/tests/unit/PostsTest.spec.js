@@ -123,4 +123,28 @@ describe('Posts', () => {
             expect(date.html()).toContain(correctDate);
         })
     })
+
+    it('Should render correctly image or video if media property is present otherwise should not', function () {
+        let posts = wrapper.findAll('.post');
+       
+        testData.forEach((testPost, i) => {
+            let post = posts.at(i);
+            const postImage = post.find('.post-image');
+            if (!testPost.media) {
+                expect(postImage.exists()).toBe(false);
+            } 
+            else {
+                expect(postImage.exists()).toBe(true);
+                expect(postImage.html()).toContain(testPost.media.url);
+
+                if (testPost.media.type === 'image') {
+                    expect(postImage.find('img').exists()).toBe(true);
+                }
+                else if (testPost.media.type === 'video'){
+                    expect(postImage.find('video').exists()).toBe(true);
+                }
+            }
+        })
+    });
+
 });
