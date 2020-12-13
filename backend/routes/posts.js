@@ -40,47 +40,62 @@ router.post('/', authorize, (request, response) => {
         message: 'Please provide all required information.'
     };
 
-    for (let field in form) {
-        // if there is no text OR no url (if type is) OR no type (if url is)
-        if (!params.text || !params.media.url && params.media.type || params.media.url && !params.media.type) {
-            response.json(fieldMissing, 400);
-            return;
-        }
+    // if there is no text OR no url (if type is) OR no type (if url is)
+    if (!params.text || !params.media.url && params.media.type || params.media.url && !params.media.type) {
+        response.status(400).json(fieldMissing);
+        return;
     }
 
+
     PostModel.create(params, () => {
-        response.status(201).json()
-        return;
+        response.status(200).json()
+        //return;
     });
 });
 
 
 router.put('/:postId/likes', authorize, (request, response) => {
-
+    const noPost = {
+        code: 'Post not found',
+        message: 'Post with those indicators can not be found'
+    }
     // Endpoint for current user to like a post
 
-    if(request.params.postId){
-        PostModel.like(request.currentUser.id, request.params.postId, () => {
-            response.status(200).json()
-        })}
-        else{
+    let thisPostId = request.body.postId
+
+    PostModel.query('SELECT * FROM post WHERE post.id = ?', [thisPostId], (err, rows) => {
+        if (request.params.postId) {
+            PostModel.like(request.currentUser.id, request.params.postId, () => {
+                response.status(200).json()
+            })
+        } else {
             response.status(404).json(noPost)
         }
+    });
 });
 
 router.delete('/:postId/likes', authorize, (request, response) => {
 
+    const noPost = {
+        code: 'Post not found',
+        message: 'Post with those indicators can not be found'
+    }
     // Endpoint for current user to unlike a post
 
-    if(request.params.postId){
-        PostModel.unlike(request.currentUser.id, request.params.postId, ()=>{
-            response.status(200).json()
-        })
-    }
-    else{
-        //post not found
-        response.status(404).json(noPost)
-    }
+    let thisPostId = request.body.postId
+
+    PostModel.query('SELECT * FROM post WHERE post.id = ?', [thisPostId], (err, rows) => {
+        if (request.params.postId) {
+            PostModel.unlike(request.currentUser.id, request.params.postId, () => {
+                response.status(200).json()
+            })
+
+        } else {
+            //post not found
+            response.status(404).json(noPost)
+        }
+    })
+
 });
 
 module.exports = router;
