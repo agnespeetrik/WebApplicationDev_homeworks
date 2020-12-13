@@ -2,6 +2,7 @@ import {mount, createLocalVue} from '@vue/test-utils'
 import Vuex from 'vuex'
 import VueRouter from 'vue-router'
 import Posts from "../../src/components/Posts.vue";
+import moment from 'moment'
 
 const localVue = createLocalVue();
 
@@ -103,4 +104,23 @@ describe('Posts', () => {
     it('1 == 1', function () {
         expect(true).toBe(true)
     });
+
+    it('Should render all posts', function() {
+        let posts = wrapper.findAll('.post');
+        expect(posts.length).toBe(testData.length);
+    })
+
+    it('Should display creation time in correct format', function() {
+        let posts = wrapper.findAll('.post');
+        testData.forEach((testPost, i) => {
+            let post = posts.at(i);
+            let date = post.find('.post-author');
+
+            let testDate = moment(testPost.createTime, 'YYYY-MM-DD hh:mm:ss');
+            let correctDate = testDate.format('dddd, MMMM D, YYYY h:mm A')
+
+            expect(date.exists()).toBe(true);
+            expect(date.html()).toContain(correctDate);
+        })
+    })
 });
