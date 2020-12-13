@@ -55,6 +55,7 @@ router.post('/', authorize, (request, response) => {
 
 
 router.put('/:postId/likes', authorize, (request, response) => {
+    /*
     const noPost = {
         code: 'Post not found',
         message: 'Post with those indicators can not be found'
@@ -62,8 +63,9 @@ router.put('/:postId/likes', authorize, (request, response) => {
     // Endpoint for current user to like a post
 
     let thisPostId = request.body.postId
+     */
 
-    PostModel.query('SELECT * FROM post WHERE post.id = ?', [thisPostId], (err, rows) => {
+    /*PostModel.query('SELECT * FROM post WHERE post.id = ?', [thisPostId], (err, rows) => {
         if (request.params.postId) {
             PostModel.like(request.currentUser.id, request.params.postId, () => {
                 response.status(200).json()
@@ -71,11 +73,14 @@ router.put('/:postId/likes', authorize, (request, response) => {
         } else {
             response.status(404).json(noPost)
         }
-    });
+    });*/
+    PostModel.like(request.currentUser.id, request.params.postId, () => {
+        response.status(200).json()
+    })
 });
 
 router.delete('/:postId/likes', authorize, (request, response) => {
-
+    /*
     const noPost = {
         code: 'Post not found',
         message: 'Post with those indicators can not be found'
@@ -94,8 +99,10 @@ router.delete('/:postId/likes', authorize, (request, response) => {
             //post not found
             response.status(404).json(noPost)
         }
+    })*/
+    PostModel.unlike(request.currentUser.id, request.params.postId, () => {
+        response.status(200).json()
     })
-
 });
 
 module.exports = router;
