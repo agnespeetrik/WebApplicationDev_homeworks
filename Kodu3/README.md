@@ -1,25 +1,24 @@
-# PostIt App
+# homework3
 
-### Using Vue.js frontend and Node.js/Express backend
-## Setup
+## Project setup
+```
+npm install
+```
 
-Backend uses embedded `sqlite3` database
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
 
-## To Run Project
+### Compiles and minifies for production
+```
+npm run build
+```
 
-### Backend
-`cd backend`
+### Lints and fixes files
+```
+npm run lint
+```
 
-`npm install`
-
-`npm run db:init (Only during the first run)`
-
-`npm start`
-    
-### Frontend
-
-`cd frontend`
-
-`npm install`
-
-`npm run serve`
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
